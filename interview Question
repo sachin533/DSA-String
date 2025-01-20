@@ -1,0 +1,32 @@
+import java.util.HashSet;
+
+public class Abcabc {
+
+    public static String findUniqueSubstrings(String s) {
+        HashSet<String> substrings = new HashSet<>();
+        StringBuilder result = new StringBuilder();
+
+        // Generate all substrings
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = i + 1; j <= s.length(); j++) {
+                String substring = s.substring(i, j);
+                if (!substrings.contains(substring)) {
+                    substrings.add(substring);
+                    result.append(substring).append(", ");
+                }
+            }
+        }
+
+        // Remove the last ", " from the result
+        if (result.length() > 0) {
+            result.setLength(result.length() - 2);
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        String s = "abcabc";
+        System.out.println(findUniqueSubstrings(s));
+    }
+}
